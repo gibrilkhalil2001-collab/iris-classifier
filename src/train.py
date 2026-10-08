@@ -6,6 +6,7 @@ Run from the project root:
 import argparse
 from pathlib import Path
 
+import joblib
 import matplotlib
 
 matplotlib.use("Agg")  # lets the script save images without opening a window
@@ -42,6 +43,8 @@ def run(test_size=0.2, random_state=42, output_dir="outputs"):
     plt.savefig(out / "confusion_matrix.png", bbox_inches="tight")
     plt.close()
 
+    joblib.dump(model, out / "model.joblib")
+
     return accuracy
 
 
@@ -54,6 +57,7 @@ def main():
     accuracy = run(args.test_size, args.random_state)
     print(f"Accuracy: {accuracy:.3f}")
     print("Confusion matrix saved to outputs/confusion_matrix.png")
+    print("Model saved to outputs/model.joblib")
 
 
 if __name__ == "__main__":

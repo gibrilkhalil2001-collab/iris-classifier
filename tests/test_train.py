@@ -10,3 +10,4 @@ def test_accuracy_is_at_least_90_percent(tmp_path):
     accuracy = run(test_size=0.2, random_state=42, output_dir=tmp_path)
     assert accuracy >= 0.9
     assert (tmp_path / "confusion_matrix.png").exists()
+    assert (tmp_path / "model.joblib").exists()
